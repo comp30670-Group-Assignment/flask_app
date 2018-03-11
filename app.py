@@ -15,6 +15,10 @@ def index():
 def about():
 	return render_template('about.html')
 
+@app.route('/stations')
+def stations():
+	return render_template('stations.html')
+
 @app.route('/articles')
 def articles():
 	return render_template('articles.html', articles = Articles)
