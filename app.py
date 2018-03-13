@@ -19,6 +19,10 @@ def about():
 def stations():
 	return render_template('stations.html')
 
+@app.route('/full-map')
+def fullMap():
+	return render_template('full-map.html')
+
 @app.route('/articles')
 def articles():
 	return render_template('articles.html', articles = Articles)
