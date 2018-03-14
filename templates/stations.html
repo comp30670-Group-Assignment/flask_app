@@ -1,9 +1,48 @@
 {% extends 'layout.html' %}
 
+
+    <link rel="stylesheet" href="css2.css">
 {% block body %}
-	<h1> Stations </h1><br>
-<h3>Click <a href="/full-map">here</a> for a full map.<br></h3>
-<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d38110.24739837288!2d-6.266065481884756!3d53.345216981310564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sie!4v1520795639814" width="1000" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <h1>Dublin Bikes Stations</h1>
+<div id="map"></div>
+<script type="text/javascript" src="javascript.js">
+    </script>
+    {% endblock %}
+<!-- <h1>JSON and AJAX</h1>
+<button id="btn">Fetch Info for 3 New Animals</button>    
+<div id="animal-info"></div>
+<script src="main.js"></script> -->
+    
+    
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA55VhjQyX8BeKEq7Przs3q7NU9RBLNBRg&callback=initMap">
+    </script>
+
+  </body>
+</html>
+
+<!--
+<script type="text/javascript">
+    
+var obj1 = {user:"John", age:22, country:"United States"};
+var obj2 = {user:"Will", age:27, country:"United Kingdom"};
+var obj3 = {user:"Abiel", age:19, country:"United States"};
+var obj4 = {u1:obj1, u2:obj2, u3:obj3};
+    
+document.write(obj3.user + " is " + obj3.age);
+    
+obj3.country = "Italy";
+document.write("<hr />");   
+document.write(obj3.user + " is " + obj3.age);
+document.write("<br>")
+document.write(obj4.u2.country);
+   
+//json arrays
+var meats = ["beef", "pork", "lamb"];   
+var fruits = ["apple", "orange", "banana"];
+var obj5 = {arr1:meats, arr2:fruits};
+    
+document.write(obj5.arr1[0]);
 
 
-{% endblock%}
+    
+</script>-->

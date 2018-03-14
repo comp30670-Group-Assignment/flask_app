@@ -1,0 +1,64 @@
+HOME.HTML
+
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+<body>
+    <div id="map"></div>
+<script type="text/javascript" src="javascript.js">
+    </script>
+    
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA55VhjQyX8BeKEq7Przs3q7NU9RBLNBRg&callback=initMap">
+    </script>
+  </body>
+</html>
+
+
+
+JAVASCRIPT.JS
+// This code initializes a map on the page where it is called
+
+      function initMap() {
+          // Tell the map where to start from...
+        var myLatLng = {lat: 53.3498, lng: -6.2603};
+          
+        var station_1 = {lat: 53.35, lng: -6.26};
+        var station_2 = {lat: 53.36, lng: -6.25};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: station_1,
+          map: map,
+          title: 'O\'Connell St.'
+        });
+          
+        var marker = new google.maps.Marker({
+          position: station_2,
+          map: map,
+          title: 'Drumcondra'
+        });
+       
+          // How do I get it to add multiple markers all at once, reading from a JSON file?
+      }
