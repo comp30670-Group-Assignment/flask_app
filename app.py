@@ -23,10 +23,6 @@ def stations():
 def fullMap():
 	return render_template('full-map.html')
 
-@app.route('/javascript')
-def javascript():
-	return render_template('javascript.js')
-
 @app.route('/articles')
 def articles():
 	return render_template('articles.html', articles = Articles)

@@ -26,12 +26,12 @@
         });*/
           
         var locations = [
-      ['O\'Connell St./Princes St.', 53.35, -6.26, 33],
-      ['Cathal Brugha Street', 53.351498594, -6.25499898, 24],
-      ['Parnell St.', 53.35186, -6.26285, 31],
-      ['Custom House', 53.34818, -6.25045, 23],
-      ['Jervis St.', 53.34692, -6.26596]
-    ];
+     		['O\'Connell St./Princes St.', 53.35, -6.26, 33],
+      		['Cathal Brugha Street', 53.351498594, -6.25499898, 24],
+      		['Parnell St.', 53.35186, -6.26285, 31],
+      		['Custom House', 53.34818, -6.25045, 23],
+      		['Jervis St.', 53.34692, -6.26596]
+    	];
           
           
         var marker, i;
