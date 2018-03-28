@@ -12,7 +12,7 @@ class Extractor:
      
     avg_available_stand = {}
     avg_available_bike = {}
-    lat&long = {}
+    lat_long = {}
     
     def __init__(self):
         
@@ -26,11 +26,11 @@ class Extractor:
         
         #constructor sets up database connection and creates tuple that holds all station names
         
-        self.conex = connection.MySQLConnection(user='root', password='*****', host='0.0.0.0', database='software_engineering')
+        self.conex = connection.MySQLConnection(user='root', password='Rugby_777', host='0.0.0.0', database='dublinbikes')
         # MySQL object
         self.cursor = self.conex.cursor()
         
-        station_names_query = "SELECT distinct(Name) FROM dublinBikes"
+        station_names_query = "SELECT distinct(Name) FROM data"
         
         self.cursor.execute(station_names_query)
         
@@ -73,6 +73,16 @@ class Extractor:
                 
                 self.avg_available_stand[j][i] = avg
                 
+    def selectStation(self, x, h):
+        
+        query = 'SELECT distinct(%s) FROM dublinbikes.data WHERE name = "%s"' % (x , h)
+        
+        self.cursor.execute(query)
+        
+        output = self.cursor.fetchall()
+        
+        return output
+                
     def getLatAndLong(self):
         
         #method queries the latitude and longitude of each station and appends
@@ -80,11 +90,11 @@ class Extractor:
         #information for each station (lat&long)
         
         for j in self.station_names:
+    
+            lat = self.selectStation('position_lat', j[0])
+            long = self.selectStation('position_lng', j[0])
             
-            lat = select(j, "Position_Lat")
-            long = select(j, "Position_Long")
-            
-            lat&long[j] = {"latitude":lat, "longitude":long}
+            self.lat_long[j[0]] = {"latitude":float(lat[0][0]), "longitude":float(long[0][0])}
             
             
     
@@ -92,7 +102,7 @@ class Extractor:
     def selectHour(self, h, x):
         
         #query needs completion
-        query = "SELECT %s FROM dublinBikes WHERE = %h" % x , h
+        query = "SELECT %s FROM data WHERE = %s;" % x , h
         
         cursor.execute(query)
         
@@ -100,9 +110,6 @@ class Extractor:
         
         return output
     
-    def select(self, h, x):
-        
-        query = "SELECT %s FROM dublinBikes WHERE = %h" % x , h
     
     
     def closeConex(self):
