@@ -10,9 +10,10 @@ from gevent.libev.corecext import stat
 
 class Extractor:
      
-    avg_available_stand = {}
-    avg_available_bike = {}
+    avg_available_stand_dict = {}
+    avg_available_bike_dict = {}
     lat_long = {}
+    json = 0
     
     def __init__(self):
         
@@ -43,35 +44,37 @@ class Extractor:
         #loop through all station names
         
         for j in self.station_names:
-            
-            
+            #tell the computer that the dictionary is multidimensional and declare a new inner dict
+            self.avg_available_stand_dict[j[0]] = {}
             #for each station name 
             for i in range(0, 24):
-                total_tuple = selectHour(i, "Available_Bike_Stands")
+                total_tuple = self.selectHour(i, "available_bike_stands")
                 #returns tuple with all values relevant to the selected time period
                 total = 0
                 for x in total_tuple:
-                    total += int(x)
+                    total += int(x[0])
                 avg = total / len(total_tuple)
-                
-                self.avg_available_stand[j][i] = avg
+                self.avg_available_stand_dict[j[0]][i] = avg
                 
             
             
     def avg_available_bike(self):
         
         for j in self.station_names:
+            
+            self.avg_available_bike_dict[j[0]] = {}
         
             for i in range(0, 24):
                 
-                total_tuple = selectHour(i, "Available_Bikes")
+                total_tuple = self.selectHour(i, "available_bikes")
+                
                 #returns tuple with all values relevant to the selected time period
                 total = 0
                 for x in total_tuple:
-                    total += int(x)
+                    total += int(x[0])
                 avg = total / len(total_tuple)
-                
-                self.avg_available_stand[j][i] = avg
+        
+                self.avg_available_bike_dict[j[0]][i] = avg
                 
     def selectStation(self, x, h):
         
@@ -91,22 +94,22 @@ class Extractor:
         
         for j in self.station_names:
     
-            lat = self.selectStation('position_lat', j[0])
-            long = self.selectStation('position_lng', j[0])
+            lat = self.selectStation("position_lat", j[0])
+            long = self.selectStation("position_lng", j[0])
             
-            self.lat_long[j[0]] = {"latitude":float(lat[0][0]), "longitude":float(long[0][0])}
+            self.lat_long["%s" % j[0]] = {"%s" % "latitude":float(lat[0][0]), "%s" % "longitude":float(long[0][0])}
             
-            
-    
+        self.json = json.dumps(self.lat_long)
+        
             
     def selectHour(self, h, x):
         
         #query needs completion
-        query = "SELECT %s FROM data WHERE = %s;" % x , h
+        query = 'SELECT %s FROM dublinbikes.data WHERE HOUR(timestamp) = %d' % (x , h)
         
-        cursor.execute(query)
+        self.cursor.execute(query)
         
-        output = cursor.fetchall()
+        output = self.cursor.fetchall()
         
         return output
     
