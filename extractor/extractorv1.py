@@ -18,6 +18,7 @@ class Extractor:
     def __init__(self):
         
         
+        
         """
         Aim of this class is to return a dictionary that holds an entry for every station.
         This entry will consist of a bi-dimensional dictionary. The first level of this 
