@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
+	<name>flask_app</name>
+=======
 	<name>30670flask</name>
+>>>>>>> branch 'master' of https://github.com/comp30670-Group-Assignment/flask_app
 	<comment></comment>
 	<projects>
 	</projects>
